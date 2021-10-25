@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2020 Bryan Siepert, written for Adafruit Industries
 # SPDX-License-Identifier: MIT
 
-# This is the stable version of ms8607-SSD1306 script
+# This is the stable version of ms8607-SSD1306 script using ms8607 PHT sensor and SSD1306 OLED display
 """
 This test will initialize the display using displayio and draw a solid white
 background, a smaller black rectangle, and some white text.
