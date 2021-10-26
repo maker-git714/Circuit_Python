@@ -4,6 +4,7 @@
 # SPDX-License-Identifier: MIT
 import time
 from adafruit_funhouse import FunHouse
+import adafruit_hts221 # import hts221 sensor
 
 funhouse = FunHouse(default_bg=None)
 funhouse.peripherals.set_dotstars(0x800000, 0x808000, 0x008000, 0x000080, 0x800080)
