@@ -52,18 +52,18 @@ last_pir = None
 while True:
     funhouse.network.mqtt_loop()
 
-    print("Temp %0.1F" % funhouse.peripherals.temperature)
-    print("Pres %d" % funhouse.peripherals.pressure)
+    print("Temp %0.1F" % hts.temperature)
+    print("Humid %d" % hts.relative_humidity)
 
     # every 10 seconds, write temp/hum/press
     if (time.monotonic() - sensorwrite_timestamp) > 10:
         funhouse.peripherals.led = True
         print("Sending data to adafruit IO!")
-        funhouse.network.mqtt_publish("temperature", funhouse.peripherals.temperature)
+        funhouse.network.mqtt_publish("temperature", hts.temperature)
         funhouse.network.mqtt_publish(
             "humidity", int(funhouse.peripherals.relative_humidity)
         )
-        funhouse.network.mqtt_publish("pressure", int(funhouse.peripherals.pressure))
+        funhouse.network.mqtt_publish("pressure", int(hts.relative_humidity))
         sensorwrite_timestamp = time.monotonic()
         # Send PIR only if changed!
         if last_pir is None or last_pir != funhouse.peripherals.pir_sensor:
