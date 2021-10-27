@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2017 Scott Shawcroft, written for Adafruit Industries
 # SPDX-FileCopyrightText: Copyright (c) 2021 Melissa LeBlanc-Williams for Adafruit Industries
+# modified to use hts221 sensor to eliminate need for temperature offset with onboard temp sensor
 #
 # SPDX-License-Identifier: MIT
 import time
