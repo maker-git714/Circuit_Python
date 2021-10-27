@@ -13,8 +13,8 @@ funhouse.peripherals.set_dotstars(0x800000, 0x808000, 0x008000, 0x000080, 0x8000
 # pylint: disable=unused-argument
 def connected(client):
     print("Connected to Adafruit IO! Subscribing...")
-    client.subscribe("buzzer")
-    client.subscribe("neopixels")
+    client.subscribe("temperature")
+    client.subscribe("humidity")
 
 
 def subscribe(client, userdata, topic, granted_qos):
