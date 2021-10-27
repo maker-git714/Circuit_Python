@@ -27,10 +27,10 @@ def disconnected(client):
 
 def message(client, feed_id, payload):
     print("Feed {0} received new value: {1}".format(feed_id, payload))
-    if feed_id == "buzzer":
+    if feed_id == "temperature":
         if int(payload) == 1:
             funhouse.peripherals.play_tone(2000, 0.25)
-    if feed_id == "neopixels":
+    if feed_id == "humidity":
         print(payload)
         color = int(payload[1:], 16)
         funhouse.peripherals.dotstars.fill(color)
