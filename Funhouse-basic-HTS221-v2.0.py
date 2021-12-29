@@ -73,6 +73,6 @@ while True:
     funhouse.set_text("CPU:%.1F C" % microcontroller.cpu.temperature, cpu_label)
     #time.sleep(30)
     print("")
-    
+
     #time.sleep(3)
     #funhouse.enter_light_sleep(DELAY)
