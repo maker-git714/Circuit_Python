@@ -2,6 +2,10 @@
 # SPDX-FileCopyrightText: 2020 Brent Rubell for Adafruit Industries.
 #
 # SPDX-License-Identifier: Unlicense
+
+# Display Twitter account tweets on the MagTag
+# randomly display Tweets with each wakeup cycle
+
 import time
 from adafruit_magtag.magtag import MagTag
 from random import randint
