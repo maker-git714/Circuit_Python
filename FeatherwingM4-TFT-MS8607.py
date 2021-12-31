@@ -1,9 +1,12 @@
 # SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
+# using Featherwing HX8357 3.5" TFT with Feather M4
+# output sensor data using MS8607 Temperature, Humidity, Pressure sensor
 
 """
-This test will initialize the display using displayio and draw a solid blue
-background, a smaller black rectangle, and output sensor MS8607 data with labeled text.
+This will initialize the display using displayio and draw a solid blue
+background, a smaller black rectangle with border, and output sensor MS8607 
+data with labeled text.
 """
 from time import sleep
 import board
