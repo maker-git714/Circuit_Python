@@ -53,7 +53,7 @@ funhouse.display.show(funhouse.splash)
 
 # Turn things off
 funhouse.peripherals.dotstars.fill(5)
-funhouse.display.brightness = 0.5
+funhouse.display.brightness = 0.2
 funhouse.network.enabled = False
 
 
