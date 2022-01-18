@@ -16,8 +16,8 @@ aht = adafruit_ahtx0.AHTx0(i2c)
 
 
 while True:
-    temperature = sensor.temperature
-    humidity = sensor.relative_humidity
+    temperature = aht.temperature
+    humidity = aht.relative_humidity
 
     # For compensated raw gas readings
     """
@@ -34,5 +34,7 @@ while True:
     voc_index = sgp.measure_index(temperature=temperature, relative_humidity=humidity)
 
     print("VOC Index:", voc_index)
+    print("Temperature: %0.1f C" % temperature)
+    print("Humidity: %0.0f rH" % humidity)
     print("")
     time.sleep(1)
