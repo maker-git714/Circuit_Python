@@ -35,6 +35,6 @@ while True:
 
     print("VOC Index:", voc_index)
     print("Temperature: %0.1f C" % temperature)
-    print("Humidity: %0.0f rH" % humidity)
+    print("Humidity: %0.0f %% rH" % humidity)
     print("")
     time.sleep(1)
