@@ -1,5 +1,6 @@
-# sgp40 data post to Adafruit IO
-
+# sgp40 with aht20 sensor data post to Adafruit IO
+# Create feeds following this link 
+# https://learn.adafruit.com/adafruit-io-basics-feeds/overview
 # SPDX-FileCopyrightText: modified from Tony DiCola for Adafruit Industries
 # SPDX-FileCopyrightText: 2019 Adafruit Industries for Adafruit Industries
 # SPDX-License-Identifier: MIT
@@ -131,7 +132,7 @@ while True:
     # Explicitly pump the message loop.
     io.loop()
     # Send a new message every 10 seconds.
-    if (time.monotonic() - last) >= 5:
+    if (time.monotonic() - last) >= 10:
         print("Publishing {0} to Temperature.".format(temperature))
         print("Publishing {0} to Humidity.".format(humidity))
         print("Publishing {0} to Air Quality".format(voc_index))
