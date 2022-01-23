@@ -16,7 +16,7 @@ pixel.brightness = 0.1
 
 print("Pressure: %.2f hPa" % sensor.pressure)
 print("Temperature: %.2f C" % sensor.temperature)
-print("Temperature" + "{0:.2f}" + "C".format(sensor.temperature))
+print("Temperature" {0:.2f} C" .format(sensor.temperature))
 print("Humidity: %.2f %% rH" % sensor.relative_humidity)
 print("\n------------------------------------------------\n")
 print((sensor.relative_humidity, sensor.temperature))
