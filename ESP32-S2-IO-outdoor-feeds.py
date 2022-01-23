@@ -29,6 +29,8 @@ battery_pack_size = PackSize.MAH500
 # Create i2c instance of sensor
 i2c = board.I2C()
 sensor = MS8607(i2c)
+battery_monitor = LC709203F(board.I2C())
+battery_monitor.pack_size = battery_pack_size
 
 # Pull the I2C power pin low
 i2c_power = digitalio.DigitalInOut(board.I2C_POWER_INVERTED)
