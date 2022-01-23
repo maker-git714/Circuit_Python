@@ -17,9 +17,23 @@ from adafruit_io.adafruit_io import IO_MQTT
 from adafruit_io.adafruit_io import IO_HTTP, AdafruitIO_RequestError
 from adafruit_lc709203f import LC709203F, PackSize
 
+# Duration of sleep in seconds. Default is 600 seconds (10 minutes).
+# Feather will sleep for this duration between sensor readings / sending data to AdafruitIO
+sleep_duration = 60
+
+# Update to match the mAh of your battery for more accurate readings.
+# Can be MAH100, MAH200, MAH400, MAH500, MAH1000, MAH2000, MAH3000.
+# Choose the closest match. Include "PackSize." before it, as shown.
+battery_pack_size = PackSize.MAH500
+
 # Create i2c instance of sensor
 i2c = board.I2C()
 sensor = MS8607(i2c)
+
+# Pull the I2C power pin low
+i2c_power = digitalio.DigitalInOut(board.I2C_POWER_INVERTED)
+i2c_power.switch_to_output()
+i2c_power.value = False
 
 ### WiFi ###
 
