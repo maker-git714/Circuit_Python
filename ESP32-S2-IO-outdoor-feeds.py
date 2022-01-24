@@ -37,7 +37,7 @@ i2c_power = digitalio.DigitalInOut(board.I2C_POWER_INVERTED)
 i2c_power.switch_to_output()
 i2c_power.value = False
 
-### WiFi ###
+''' ### WiFi ###
 
 # Add a secrets.py to your filesystem that has a dictionary called secrets with "ssid" and
 # "password" keys with your WiFi credentials. DO NOT share that file or commit it into Git or other
@@ -121,7 +121,7 @@ io.on_message = message
 # Connect to Adafruit IO
 print("Connecting to Adafruit IO...")
 io.connect()
-
+'''
 
 # Create instance of Neopixel
 pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
