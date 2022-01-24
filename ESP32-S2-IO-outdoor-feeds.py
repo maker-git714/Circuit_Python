@@ -101,28 +101,6 @@ io = IO_HTTP(aio_username, aio_key, requests)
 # Turn on Neopixel when data is sent
 pixel.fill((255, 0, 255))
 
-'''print("Publishing a new message every 30 seconds...")
-print("Publishing {0}, {1}, {2} to outdoor sensor feed.".format(temperature, humidity, pressure))
-io.publish("outdoor-sensor.humidity", humidity)
-io.publish("outdoor-sensor.temperature", temperature)
-io.publish("outdoor-sensor.pressure", pressure)
-
-print("Pressure: %.2f hPa" % sensor.pressure)
-print("Temperature: %.1f C" % sensor.temperature)
-print("Humidity: %.2f %% rH" % sensor.relative_humidity)
-print("\n------------------------------------------------\n")
-#print((sensor.relative_humidity, sensor.temperature))
-pixel.fill((255, 0, 255))
-time.sleep(0.5)
-
-
-# Create a an alarm that will trigger 30 seconds from now.
-time_alarm = alarm.time.TimeAlarm(monotonic_time=time.monotonic() + 30)
-# Exit the program, and then deep sleep until the alarm wakes us.
-alarm.exit_and_deep_sleep_until_alarms(time_alarm)
-# Does not return, so we never get here.
-# Write your code here :-)
-'''
 
 # Print data values to the serial console. Not necessary for Adafruit IO.
 print("Current sensor temperature: {0} C".format(temperature))
