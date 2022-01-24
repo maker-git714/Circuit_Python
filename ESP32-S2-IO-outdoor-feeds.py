@@ -151,6 +151,12 @@ def setup_feed(feed_name):
         # If no feed of that name exists, create it
         return io.create_new_feed(feed_name)
 
+# Send the data. Requires a feed name and a value to send.
+def send_io_data(feed, value):
+    return io.send_data(feed["key"], value)
+
+
+
 print("Publishing a new message every 30 seconds...")
 print("Publishing {0}, {1}, {2} to outdoor sensor feed.".format(temperature, humidity, pressure))
 io.publish("outdoor-sensor.humidity", humidity)
