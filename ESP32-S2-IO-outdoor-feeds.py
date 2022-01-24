@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2020 Bryan Siepert, written for Adafruit Industries
 # SPDX-License-Identifier: MIT
+# Adapted from https://learn.adafruit.com/adafruit-esp32-s2-feather/i2c-on-board-sensors
 
 import board
 from adafruit_ms8607 import MS8607
