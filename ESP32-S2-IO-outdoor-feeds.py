@@ -127,9 +127,30 @@ io.connect()
 pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
 pixel.brightness = 0.1
 
-humidity = sensor.relative_humidity
-temperature = sensor.temperature
-pressure = sensor.pressure
+# Collect the sensor data values and format the data
+temperature = "{:.2f}".format(sensor.temperature)
+temperature_f = "{:.2f}".format((sensor.temperature * (9 / 5) + 32))  # Convert C to F
+humidity = "{:.2f}".format(sensor.relative_humidity)
+pressure = "{:.2f}".format(sensor.pressure)
+battery_voltage = "{:.2f}".format(battery_monitor.cell_voltage)
+battery_percent = "{:.1f}".format(battery_monitor.cell_percent)
+
+def go_to_sleep(sleep_period):
+    # Create a an alarm that will trigger sleep_period number of seconds from now.
+    time_alarm = alarm.time.TimeAlarm(monotonic_time=time.monotonic() + sleep_period)
+    # Exit and deep sleep until the alarm wakes us.
+    alarm.exit_and_deep_sleep_until_alarms(time_alarm)
+
+
+# Fetch the feed of the provided name. If the feed does not exist, create it.
+def setup_feed(feed_name):
+    try:
+        # Get the feed of provided feed_name from Adafruit IO
+        return io.get_feed(feed_name)
+    except AdafruitIO_RequestError:
+        # If no feed of that name exists, create it
+        return io.create_new_feed(feed_name)
+
 print("Publishing a new message every 30 seconds...")
 print("Publishing {0}, {1}, {2} to outdoor sensor feed.".format(temperature, humidity, pressure))
 io.publish("outdoor-sensor.humidity", humidity)
