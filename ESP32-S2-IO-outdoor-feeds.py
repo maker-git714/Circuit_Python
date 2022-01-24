@@ -21,9 +21,9 @@ try:
 except ImportError:
     print("WiFi and Adafruit IO credentials are kept in secrets.py, please add them there!")
     raise
-# Duration of sleep in seconds. Default is 600 seconds (10 minutes).
+# Duration of sleep in seconds. Default is 300 seconds (5 minutes).
 # Feather will sleep for this duration between sensor readings / sending data to AdafruitIO
-sleep_duration = 60
+sleep_duration = 300
 
 # Update to match the mAh of your battery for more accurate readings.
 # Can be MAH100, MAH200, MAH400, MAH500, MAH1000, MAH2000, MAH3000.
