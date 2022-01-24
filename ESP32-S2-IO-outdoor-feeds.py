@@ -6,7 +6,7 @@ from adafruit_ms8607 import MS8607
 import alarm
 import time
 import neopixel
-
+import digitalio
 # Setup MMQT service from ESP32-S2-internet-test.py example script
 import ssl
 import socketpool
@@ -16,7 +16,11 @@ from adafruit_io.adafruit_io import IO_MQTT
 
 from adafruit_io.adafruit_io import IO_HTTP, AdafruitIO_RequestError
 from adafruit_lc709203f import LC709203F, PackSize
-
+try:
+    from secrets import secrets
+except ImportError:
+    print("WiFi and Adafruit IO credentials are kept in secrets.py, please add them there!")
+    raise
 # Duration of sleep in seconds. Default is 600 seconds (10 minutes).
 # Feather will sleep for this duration between sensor readings / sending data to AdafruitIO
 sleep_duration = 60
