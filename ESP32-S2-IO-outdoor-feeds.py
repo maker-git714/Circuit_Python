@@ -179,9 +179,8 @@ aio_key = secrets["aio_key"]
 # Initialize an Adafruit IO HTTP API object
 io = IO_HTTP(aio_username, aio_key, requests)
 
-# Light Neopixel when data is sent
+# Turn on Neopixel when data is sent
 pixel.fill((255, 0, 255))
-time.sleep(0.5)
 
 '''print("Publishing a new message every 30 seconds...")
 print("Publishing {0}, {1}, {2} to outdoor sensor feed.".format(temperature, humidity, pressure))
@@ -207,10 +206,10 @@ alarm.exit_and_deep_sleep_until_alarms(time_alarm)
 '''
 
 # Print data values to the serial console. Not necessary for Adafruit IO.
-print("Current BME280 temperature: {0} C".format(temperature))
-print("Current BME280 temperature: {0} F".format(temperature_f))
-print("Current BME280 humidity: {0} %".format(humidity))
-print("Current BME280 pressure: {0} hPa".format(pressure))
+print("Current sensor temperature: {0} C".format(temperature))
+print("Current sensor temperature: {0} F".format(temperature_f))
+print("Current sensor humidity: {0} %".format(humidity))
+print("Current sensor pressure: {0} hPa".format(pressure))
 print("Current battery voltage: {0} V".format(battery_voltage))
 print("Current battery percent: {0} %".format(battery_percent))
 
@@ -219,15 +218,15 @@ print("Current battery percent: {0} %".format(battery_percent))
 try:
     print("Sending data to AdafruitIO...")
     # Send data to Adafruit IO
-    send_io_data(setup_feed("bme280-temperature"), temperature)
-    send_io_data(setup_feed("bme280-temperature-f"), temperature_f)
-    send_io_data(setup_feed("bme280-humidity"), humidity)
-    send_io_data(setup_feed("bme280-pressure"), pressure)
+    send_io_data(setup_feed("sensor-temperature"), temperature)
+    send_io_data(setup_feed("sensor-temperature-f"), temperature_f)
+    send_io_data(setup_feed("sensor-humidity"), humidity)
+    send_io_data(setup_feed("sensor-pressure"), pressure)
     send_io_data(setup_feed("battery-voltage"), battery_voltage)
     send_io_data(setup_feed("battery-percent"), battery_percent)
     print("Data sent!")
-    # Turn off the LED to indicate data sending is complete.
-    led.value = False
+    # Turn off the Neopixel to indicate data sending is complete.
+    neopixel.value = False
 
 # Adafruit IO can fail with multiple errors depending on the situation, so this except is broad.
 except Exception as e:  # pylint: disable=broad-except
