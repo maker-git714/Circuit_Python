@@ -226,7 +226,7 @@ try:
     send_io_data(setup_feed("battery-percent"), battery_percent)
     print("Data sent!")
     # Turn off the Neopixel to indicate data sending is complete.
-    neopixel.value = False
+    neopixel.fill((0,0,0))
 
 # Adafruit IO can fail with multiple errors depending on the situation, so this except is broad.
 except Exception as e:  # pylint: disable=broad-except
