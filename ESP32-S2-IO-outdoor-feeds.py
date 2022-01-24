@@ -155,9 +155,35 @@ def setup_feed(feed_name):
 def send_io_data(feed, value):
     return io.send_data(feed["key"], value)
 
+# Wi-Fi connections can have issues! This ensures the code will continue to run.
+try:
+    # Connect to Wi-Fi
+    wifi.radio.connect(secrets["ssid"], secrets["password"])
+    print("Connected to {}!".format(secrets["ssid"]))
+    print("IP:", wifi.radio.ipv4_address)
 
+    pool = socketpool.SocketPool(wifi.radio)
+    requests = adafruit_requests.Session(pool, ssl.create_default_context())
 
-print("Publishing a new message every 30 seconds...")
+# Wi-Fi connectivity fails with error messages, not specific errors, so this except is broad.
+except Exception as e:  # pylint: disable=broad-except
+    print(e)
+    go_to_sleep(60)
+
+# Set your Adafruit IO Username and Key in secrets.py
+# (visit io.adafruit.com if you need to create an account,
+# or if you need your Adafruit IO key.)
+aio_username = secrets["aio_username"]
+aio_key = secrets["aio_key"]
+
+# Initialize an Adafruit IO HTTP API object
+io = IO_HTTP(aio_username, aio_key, requests)
+
+# Light Neopixel when data is sent
+pixel.fill((255, 0, 255))
+time.sleep(0.5)
+
+'''print("Publishing a new message every 30 seconds...")
 print("Publishing {0}, {1}, {2} to outdoor sensor feed.".format(temperature, humidity, pressure))
 io.publish("outdoor-sensor.humidity", humidity)
 io.publish("outdoor-sensor.temperature", temperature)
@@ -178,3 +204,34 @@ time_alarm = alarm.time.TimeAlarm(monotonic_time=time.monotonic() + 30)
 alarm.exit_and_deep_sleep_until_alarms(time_alarm)
 # Does not return, so we never get here.
 # Write your code here :-)
+'''
+
+# Print data values to the serial console. Not necessary for Adafruit IO.
+print("Current BME280 temperature: {0} C".format(temperature))
+print("Current BME280 temperature: {0} F".format(temperature_f))
+print("Current BME280 humidity: {0} %".format(humidity))
+print("Current BME280 pressure: {0} hPa".format(pressure))
+print("Current battery voltage: {0} V".format(battery_voltage))
+print("Current battery percent: {0} %".format(battery_percent))
+
+# Adafruit IO sending can run into issues if the network fails!
+# This ensures the code will continue to run.
+try:
+    print("Sending data to AdafruitIO...")
+    # Send data to Adafruit IO
+    send_io_data(setup_feed("bme280-temperature"), temperature)
+    send_io_data(setup_feed("bme280-temperature-f"), temperature_f)
+    send_io_data(setup_feed("bme280-humidity"), humidity)
+    send_io_data(setup_feed("bme280-pressure"), pressure)
+    send_io_data(setup_feed("battery-voltage"), battery_voltage)
+    send_io_data(setup_feed("battery-percent"), battery_percent)
+    print("Data sent!")
+    # Turn off the LED to indicate data sending is complete.
+    led.value = False
+
+# Adafruit IO can fail with multiple errors depending on the situation, so this except is broad.
+except Exception as e:  # pylint: disable=broad-except
+    print(e)
+    go_to_sleep(60)
+
+go_to_sleep(sleep_duration)
