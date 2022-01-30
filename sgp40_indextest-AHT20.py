@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Unlicense
 
-# modified to use AHT20 sensor
+# modified to use AHT20 sensor to provide temperature and humidity data
 
 import time
 import board
