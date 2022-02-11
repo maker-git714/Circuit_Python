@@ -41,8 +41,6 @@ humid_label = funhouse.add_text(text="HUMID:", text_position=(1, 30), text_color
 pressure_label = funhouse.add_text(text="PRESSURE:", text_position=(1, 50), text_color=0xFF0000)
 cpu_label = funhouse.add_text(text="CPU:", text_position=(1, 70), text_color=0x39AB07)
 
-
-
 def log_data():
     print("Logging Temperature, Humidity and Pressure")
     print("Temperature %0.1F" % (funhouse.peripherals.temperature - TEMPERATURE_OFFSET))
@@ -69,11 +67,12 @@ funhouse.set_text("CPU:%0.1F C" % microcontroller.cpu.temperature, cpu_label)
 
 print(funhouse.peripherals.temperature, funhouse.peripherals.relative_humidity, funhouse.peripherals.pressure, microcontroller.cpu.temperature)
 funhouse.display.show(funhouse.splash)
-time.sleep(5)
+time.sleep(15)
+
 
 log_data()
 print("Sleeping for {} seconds...".format(DELAY))
-    #funhouse.enter_light_sleep(DELAY)
+#funhouse.enter_light_sleep(DELAY)
 
 # Create a an alarm that will trigger 30 seconds from now.
 time_alarm = alarm.time.TimeAlarm(monotonic_time=time.monotonic() + DELAY)
