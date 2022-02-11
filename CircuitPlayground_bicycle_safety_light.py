@@ -41,7 +41,7 @@ while True:
     #print(f"change in z axis = {change_z}")
 
 
-    if last_z < z and last_y > y:
+    if last_z < 0 and last_y > 50:  # not sure of cutoff
         cp.pixels[0] = (255, 0, 0)
         cp.pixels[1] = (255, 0, 0)
         cp.pixels[2] = (255, 0, 0)
